@@ -1,0 +1,16 @@
+# Perfil PROD: las credenciales NO van en el codigo, se leen de variables de entorno
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bd_cliente?serverTimezone=America/Lima}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none   # no crea ni modifica tablas, usa las creadas con sql/script_bd.sql
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    com.tecsup: INFO
+

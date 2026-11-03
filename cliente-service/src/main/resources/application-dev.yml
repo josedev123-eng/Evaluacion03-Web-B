@@ -1,0 +1,15 @@
+# Perfil DEV: base local, crea/actualiza tablas solo y muestra el SQL en consola
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true&serverTimezone=America/Lima
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    com.tecsup: DEBUG
+
