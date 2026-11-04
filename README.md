@@ -13,12 +13,12 @@ Una empresa necesita controlar a sus clientes, los servicios que ofrece (luz, ag
 | Herramienta | Versión |
 |---|---|
 | Java (JDK) | 17 o superior |
-| Maven | 3.9+ (o el que trae IntelliJ) |
-| Spring Boot | 3.5.6 |
+| Maven | Maven Wrapper incluido (`mvnw`) o el de IntelliJ |
+| Spring Boot | 4.1.2 |
 | MySQL | 8.x (XAMPP / MySQL Server) |
 | Postman | cualquier versión reciente |
 
-Dependencias de cada proyecto (Spring Initializr): Spring Web, Spring Data JPA, MySQL Driver, Validation y Spring Boot DevTools.
+Cada proyecto se generó en Spring Initializr (Maven, Java 17, configuración YAML) con: Spring Web, Spring Data JPA, MySQL Driver, Validation y Spring Boot DevTools.
 
 ## Microservicios, puertos y bases de datos
 
@@ -66,14 +66,14 @@ El perfil activo se elige en `application.yml` (`spring.profiles.active: dev`) o
 2. (Opcional en dev) Ejecutar `sql/script_bd.sql` en MySQL Workbench / phpMyAdmin para crear las 3 bases con datos de prueba. En **prod es obligatorio**.
 3. Abrir cada carpeta (`cliente-service`, `servicio-service`, `recibo-service`) como proyecto Maven en IntelliJ.
 4. Levantar en este orden: **ClienteServiceApplication** (8081), **ServicioServiceApplication** (8082) y **ReciboServiceApplication** (8083).
-   Desde consola también se puede: `mvn spring-boot:run` dentro de cada carpeta.
+   Desde consola también se puede: `.\mvnw spring-boot:run` dentro de cada carpeta.
 5. Importar en Postman `postman/Evaluacion03-PagosServicios.postman_collection.json` y ejecutar las peticiones en orden (o todas con el *Collection Runner*). Los IDs creados se guardan solos en variables.
 
 Para correr en prod (PowerShell):
 
 ```powershell
 $env:DB_USERNAME="usuario"; $env:DB_PASSWORD="clave"
-mvn spring-boot:run "-Dspring-boot.run.profiles=prod"
+.\mvnw spring-boot:run "-Dspring-boot.run.profiles=prod"
 ```
 
 ## Endpoints
