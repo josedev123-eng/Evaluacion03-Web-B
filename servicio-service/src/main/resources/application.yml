@@ -1,0 +1,14 @@
+# Configuracion comun para todos los perfiles
+spring:
+  application:
+    name: servicio-service
+  profiles:
+    active: dev   # cambiar a prod (o usar --spring.profiles.active=prod)
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8082
