@@ -1,0 +1,25 @@
+flowchart LR
+    P["Postman / Cliente HTTP"]
+
+    subgraph CS["cliente-service :8081"]
+      C1["ClienteController<br/>/api/clientes"] --> C2["ClienteService"] --> C3["ClienteRepository"]
+    end
+    subgraph SS["servicio-service :8082"]
+      S1["ServicioController<br/>/api/servicios"] --> S2["ServicioService"] --> S3["ServicioRepository"]
+    end
+    subgraph RS["recibo-service :8083"]
+      R1["ReciboController<br/>/api/recibos"] --> R2["ReciboService"] --> R3["ReciboRepository"]
+    end
+
+    DB1[("bd_cliente<br/>tabla cliente")]
+    DB2[("bd_servicio<br/>tabla servicio")]
+    DB3[("bd_recibo<br/>tabla recibo<br/>id_cliente, id_servicio")]
+
+    P --> C1
+    P --> S1
+    P --> R1
+    C3 --> DB1
+    S3 --> DB2
+    R3 --> DB3
+    R2 -. "GET /api/clientes/{id}<br/>(RestTemplate)" .-> C1
+    R2 -. "GET /api/servicios/{id}<br/>(RestTemplate)" .-> S1
